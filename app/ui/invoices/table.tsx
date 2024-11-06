@@ -2,7 +2,7 @@ import Image from "next/image";
 import { UpdateInvoice, DeleteInvoice } from "@/app/ui/invoices/buttons";
 import InvoiceStatus from "@/app/ui/invoices/status";
 import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
-// import { fetchFilteredInvoices } from "@/app/lib/data";
+import { fetchFilteredInvoices } from "@/app/lib/data";
 
 export default async function InvoicesTable({
     query,
@@ -11,12 +11,13 @@ export default async function InvoicesTable({
     query: string;
     currentPage: number;
 }) {
-    // const invoices = await fetchFilteredInvoices(query, currentPage);
+    const invoices = await fetchFilteredInvoices(query, currentPage);
+    console.log("invoi", invoices);
 
     return (
         <div className="mt-6 flow-root">
             <div className="inline-block min-w-full align-middle">
-                {/* <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
+                <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
                     <div className="md:hidden">
                         {invoices?.map((invoice) => (
                             <div
@@ -139,7 +140,7 @@ export default async function InvoicesTable({
                             ))}
                         </tbody>
                     </table>
-                </div> */}
+                </div>
             </div>
         </div>
     );
